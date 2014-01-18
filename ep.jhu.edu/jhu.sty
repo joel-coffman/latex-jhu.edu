@@ -1,0 +1,54 @@
+%% jhu
+%%   LaTeX style for presentations
+%% Author: Joel Coffman <joel.coffman@jhu.edu>
+
+\def\@package{jhu}
+\def\@version{0.0.1}
+\def\@lastmodified{2014/01/18}
+
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{\@package}[\@lastmodified\ Presentation style by Joel Coffman (v. \@version)]
+
+%% =============================================================================
+%% Constants
+%% =============================================================================
+
+%% Constants
+\def\@true{true}
+
+%% =============================================================================
+%% Option parsing
+%% =============================================================================
+
+\DeclareOption{handout}{%
+  \AtEndOfPackage{%
+    \RequirePackage{pgfpages}%
+    \pgfpagesuselayout{2 on 1}[letterpaper,border shrink=2em]%
+  }
+}
+
+%% Process the specified options. (NOTE: No packages allowed above here.)
+\ProcessOptions\relax
+
+%% =============================================================================
+%% Required packages
+%% =============================================================================
+
+%\RequirePackage{pgfpages}
+\RequirePackage[absolute,overlay]{textpos}
+
+%% =============================================================================
+%%
+%% =============================================================================
+
+%% beamer
+\mode<presentation>
+
+\setbeamerfont{quote}{series=\normalfont}
+\setbeamerfont{quotation}{series=\normalfont}
+
+%% =============================================================================
+%%
+%% =============================================================================
+
+\newcommand{\continued}[0]{(continued)}

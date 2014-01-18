@@ -1,0 +1,166 @@
+%% beamerthemejhu
+%%   A Beamer theme for the Engineering for Professionals program in the Johns
+%%   Hopkins University Whiting School of Engineering.
+%% Author: Joel Coffman <joel.coffman@jhu.edu>
+%%
+%% Copyright 2014 Joel Coffman
+
+%% =============================================================================
+%% CHANGE LOG
+%% =============================================================================
+%% 0.9.x
+%% - Initial version (copied from personal Beamer presentations)
+%%
+%% =============================================================================
+%% TODO
+%% =============================================================================
+%% - add support for other schools at UVa / generic logos
+%% - commenting of code
+
+
+%% =============================================================================
+%% OPTIONS
+%% =============================================================================
+
+% handout - 2 slides per page
+\newif\if@beamerthemejhu@handout\relax
+\DeclareOption{handout}{
+  \@beamerthemejhu@handouttrue
+}
+
+% process options
+\ProcessOptions\relax % \relax avoid unnecessary lookahead
+
+
+%% =============================================================================
+%% PACKAGES
+%% =============================================================================
+
+%% REQUIRED --------------------------------------------------------------------
+
+% for logos (EPS files by default)
+\RequirePackage[update]{epstopdf}
+
+% colors
+\RequirePackage{xcolor}
+
+%% OPTIONAL --------------------------------------------------------------------
+
+\if@beamerthemejhu@handout
+  \RequirePackage{pgfpages}% for printing handouts
+  \pgfpagesuselayout{2 on 1}[letterpaper,border shrink=2em]%
+\fi
+
+\mode<presentation>
+
+%% =============================================================================
+%% COLORS
+%% =============================================================================
+
+\definecolor{BlueJay}{RGB}{0,103,172}
+
+
+% ==============================================================================
+%
+% ==============================================================================
+
+
+% Helvetica font
+\renewcommand\sfdefault{phv}
+\renewcommand\familydefault{\sfdefault}
+
+\setbeamerfont{institute}{size=\small}
+
+\setbeamercolor{normal text}{fg=black}
+
+\setbeamercolor{structure}{bg=white, fg=BlueJay}
+
+\setbeamercolor*{palette primary}{use=structure,bg=white,fg=BlueJay}
+\setbeamercolor*{palette quaternary}{bg=BlueJay,fg=white}
+
+
+\setbeamercolor{alerted text}{fg=BlueJay}
+
+\setbeamercolor{theorem text}{fg=BlueJay}
+\setbeamercolor{lemma text}{fg=BlueJay}
+\setbeamercolor{proof text}{fg=BlueJay}
+\setbeamercolor{corollary text}{fg=BlueJay}
+\setbeamercolor{example text}{fg=BlueJay}
+
+\setbeamercolor{author in head/foot}{bg=black,fg=white}
+\setbeamercolor{title in head/foot}{bg=black,fg=white}
+
+% fix up font colors in headers and footers
+%\setbeamercolor*{title in head/foot}{fg=UVaOrange}
+%\setbeamercolor*{subsection in head/foot}{fg=UVaOrange}
+
+\useoutertheme{split} % [must appear after setting colors]
+% add "pop" to the small text appearing in header and footer
+\usefonttheme[onlysmall]{structurebold}
+
+
+%
+%\setbeamertemplate{items}[circle]
+
+% Admittedly stolen from the University of Oregon theme:
+% http://ix.cs.uoregon.edu/~peter/uotheme/
+
+\logo{%
+  \vbox to\@tempdimb{%
+    \vfil%
+%    \hspace{0.1\@tempdimb}\includegraphics[height=0.9\@tempdimb]{../whiting-logo-small-horizontal-white.pdf}\hspace{0.1\@tempdimb}%
+    \hspace{1em}\includegraphics[height=0.6\@tempdimb]{jhu-ep-logo.eps}\hspace{1em}%
+	\vfil%
+  }%
+}
+% Placement stuff - primarily all about where the logo(s) go
+\setbeamertemplate{frametitle}[default][center]
+\defbeamertemplate*{sidebar right}{uoregon theme}
+{ % Removes the logo from the lower right so that we can place it less obtrusively
+    \vfill%
+    \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+    \vskip2pt%
+}
+\defbeamertemplate*{headline}{jhu theme}
+{%
+  \leavevmode%
+  \@tempdimb=2.4375ex%
+  \ifnum\beamer@subsectionmax<\beamer@sectionmax%
+    \multiply\@tempdimb by\beamer@sectionmax%
+  \else%
+    \multiply\@tempdimb by\beamer@subsectionmax%
+  \fi%
+  \ifdim\@tempdimb>0pt%
+    \advance\@tempdimb by 1.125ex%
+    \ifdim\@tempdimb<.5in% Make sure the box is big enough for the seal(s)
+      \@tempdimb=.5in%
+    \fi%
+    \begin{beamercolorbox}[wd=.42\paperwidth,ht=\@tempdimb]{section in head/foot}%
+      \smash{\rlap{\insertlogo}}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=\@tempdimb]{section in head/foot}%
+      \vbox to\@tempdimb{\vfil\insertsectionnavigation{.25\paperwidth}\vfil}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=\@tempdimb]{subsection in head/foot}%
+      \vbox to\@tempdimb{\vfil\insertsubsectionnavigation{.33\paperwidth}\vfil}%
+    \end{beamercolorbox}%
+  \fi%
+}
+
+\defbeamertemplate*{footline}{jhu theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.33\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=1em,rightskip=1em]{author in head/foot}%
+    \usebeamerfont{author in head/foot}%
+	{ep.jhu.edu}%
+	\hfill%
+	\insertshortauthor%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.67\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}
+    \insertshorttitle\hfill\insertdate\hfill\insertframenumber\ / \inserttotalframenumber
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\mode<all>
