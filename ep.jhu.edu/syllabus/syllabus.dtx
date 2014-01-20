@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{syllabus}
-%<package>  [2014/01/18 v0.9.0 Style file for JHU EP syllabi]
+%<package>  [2014/01/20 v0.9.1 Style file for JHU EP syllabi]
 %<package>\RequirePackage{helvet}
 %<package>\RequirePackage{microtype}
 %<package>\RequirePackage{parskip}
@@ -65,7 +65,7 @@
 % Right brace   \}     Tilde         \~}
 %
 %
-% \changes{v1.0}{2014/01/18}{Initial version}
+% \changes{0.9.0}{2014/01/18}{Initial version}
 %
 % \GetFileInfo{syllabus.sty}
 %
@@ -105,7 +105,7 @@
   {%
     \Large\bfseries%
     \textcolor{bluejay}{\@title\@thanks}\\[2ex]%
-    \textcolor{bluejay}{Syllabus}%
+	\textcolor{bluejay}{Syllabus}%
   }%
 }
 %    \end{macrocode}
@@ -117,14 +117,17 @@
   {\large\bfseries\color{bluejay}}%
   {}%
   {0pt}%
-  {}%
+  {\vspace*{-0.5\baselineskip}}%
 \titleformat{\subsection}%
   [hang]%
   {\bfseries\color{bluejay}}%
   {}%
   {0pt}%
-  {}%
+  {\vspace*{-0.5\baselineskip}}%
 %    \end{macrocode}
+% \changes{0.9.1}{2014/01/20}{
+%   Remove extra spacing following the (sub)section heading.
+% }
 %
 % Define the Johns Hopkins blue color for titles.
 %    \begin{macrocode}
@@ -137,7 +140,7 @@
 %    \end{macrocode}
 %
 % \DescribeEnv{instructor}
-% The \verb|instructor| environment comprises information about the courses instructor(s).
+% The \texttt{instructor} environment comprises information about the courses instructor(s).
 % The \marg{name of the instructor} is mandatory.
 %    \begin{macrocode}
 \newenvironment{instructor}[1]{%
@@ -158,7 +161,7 @@
   \textbf{#1}\\[0.5ex]%
 %    \end{macrocode}
 %
-% The \verb|instructor| \texttt{instructor} environment uses a tabular format to typeset contact information.
+% The \texttt{instructor} environment uses a tabular format to typeset contact information.
 % The ordinary leading space on the left of the tabular environment is suppressed.
 %    \begin{macrocode}
   \begin{tabular}{@{}ll}%
