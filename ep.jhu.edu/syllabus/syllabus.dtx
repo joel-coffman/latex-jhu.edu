@@ -101,15 +101,18 @@
 %    \begin{macrocode}
 \renewcommand{\maketitle}{%
   \thispagestyle{plain}%
-  \noindent%
-  {%
+  \begin{center}%
     \Large\bfseries%
-    \textcolor{bluejay}{\@title\@thanks}%
-  }%
+    \textcolor{bluejay}{\@title}%
+	\@thanks%
+  \end{center}%
 }
 %    \end{macrocode}
 % \changes{0.9.1}{2014/01/20}{
-%   Remove 'Syllabus' from automatically appearing in title.
+%   Remove 'Syllabus' from automatically appearing in title
+% }
+% \changes{0.9.1}{2014/01/20}{
+%   Center title
 % }
 %
 % Modify the sectioning commands to omit the number and change the font color.
@@ -128,7 +131,7 @@
   {\vspace*{-0.5\baselineskip}}%
 %    \end{macrocode}
 % \changes{0.9.1}{2014/01/20}{
-%   Remove extra spacing following the (sub)section heading.
+%   Remove extra spacing following the (sub)section heading
 % }
 %
 % Define the Johns Hopkins blue color for titles.
