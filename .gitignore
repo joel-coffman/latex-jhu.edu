@@ -1,0 +1,29 @@
+# OS metadata
+.DS_Store
+
+# temporary and backup files
+.*.swp
+*~
+
+# LaTeX derivatives
+*.aux
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.log
+*.out
+*.pdf
+
+*.synctex.gz
+_minted-*
+
+.version.tex
+
+
+/unversioned/
+
+# derivative files generated via .ins and .dtx
+*.cls
+*.sty

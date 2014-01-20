@@ -1,0 +1,171 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2014 by Joel Coffman
+% -----------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%   http://www.latex-project.org/lppl.txt
+%
+% and version 1.2 or later is part of all distributions of LaTeX
+% version 1999/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{syllabus}
+%<package>  [2014/01/18 v0.9.0 Style file for JHU EP syllabi]
+%<package>\RequirePackage{helvet}
+%<package>\RequirePackage{microtype}
+%<package>\RequirePackage{parskip}
+%<package>\RequirePackage{titlesec}
+%<package>\RequirePackage{xcolor}
+%<package>\RequirePackage[
+%<package>    inner=1in,% toward binding (i.e., left)
+%<package>    outer=1in,% away from binding
+%<package>    top=1in,%
+%<package>    bottom=1in,%
+%<package>    %includeheadfoot,
+%<package>    asymmetric% twosided layout where margins are *not* swapped on alternate pages
+%<package>]{geometry}
+%
+%<*driver>
+\documentclass{ltxdoc}
+\input{.version}
+\usepackage{syllabus}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{syllabus.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+% {Upper-case   \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+% Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+% Digits        \0\1\2\3\4\5\6\7\8\9
+% Exclamation   \!     Double quote  \"     Hash (number) \#
+% Dollar        \$     Percent       \%     Ampersand     \&
+% Acute accent  \'     Left paren    \(     Right paren   \)
+% Asterisk      \*     Plus          \+     Comma         \,
+% Minus         \-     Point         \.     Solidus       \/
+% Colon         \:     Semicolon     \;     Less than     \<
+% Equals        \=     Greater than  \>     Question mark \?
+% Commercial at \@     Left bracket  \[     Backslash     \\
+% Right bracket \]     Circumflex    \^     Underscore    \_
+% Grave accent  \`     Left brace    \{     Vertical bar  \|
+% Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v1.0}{2014/01/18}{Initial version}
+%
+% \GetFileInfo{syllabus.sty}
+%
+% \DoNotIndex{\#,\$,\%,\&,\@,\\,\{,\},\^,\_,\~,\ }
+% \DoNotIndex{\@ne}
+% \DoNotIndex{\advance,\begingroup,\catcode,\closein}
+% \DoNotIndex{\closeout,\day,\def,\edef,\else,\empty,\endgroup}
+%
+% \title{The \textsf{syllabus} package\thanks{This document
+% corresponds to \textsf{syllabus}~\fileversion-\version,
+% dated \filedate.}}
+% \author{Joel Coffman\\\texttt{joel.coffman@jhu.edu}}
+%
+% \maketitle
+%
+% \begin{abstract}
+% Put text here.
+% \end{abstract}
+%
+% \section{Introduction}
+%
+% Put text here.
+%
+% \section{Usage}
+%
+% \StopEventually{
+%   \PrintChanges
+%   \PrintIndex
+% }
+%
+% \section{Implementation}
+% Redefine maketitle to print the name of the course followed by "Syllabus" on the following line.
+%    \begin{macrocode}
+\renewcommand{\maketitle}{%
+  \thispagestyle{plain}%
+  \noindent%
+  {%
+    \Large\bfseries%
+    \textcolor{bluejay}{\@title\@thanks}\\[2ex]%
+    \textcolor{bluejay}{Syllabus}%
+  }%
+}
+%    \end{macrocode}
+%
+% Modify the sectioning commands to omit the number and change the font color.
+%    \begin{macrocode}
+\titleformat{\section}%
+  [hang]%
+  {\large\bfseries\color{bluejay}}%
+  {}%
+  {0pt}%
+  {}%
+\titleformat{\subsection}%
+  [hang]%
+  {\bfseries\color{bluejay}}%
+  {}%
+  {0pt}%
+  {}%
+%    \end{macrocode}
+%
+% Define the Johns Hopkins blue color for titles.
+%    \begin{macrocode}
+\definecolor{bluejay}{RGB}{0,103,172}
+%    \end{macrocode}
+%
+% Use a sans serif font by default.
+%    \begin{macrocode}
+\renewcommand{\familydefault}{\sfdefault}
+%    \end{macrocode}
+%
+% \DescribeEnv{instructor}
+% The \verb|instructor| environment comprises information about the courses instructor(s).
+% The \marg{name of the instructor} is mandatory.
+%    \begin{macrocode}
+\newenvironment{instructor}[1]{%
+%    \end{macrocode}
+%
+% \DescribeMacro{contact}
+% Within the instructor environment, the \verb|\contact|\marg{type}\marg{information} macro specifies contact information for the instructor.
+% Listing at least a telephone number and email address is suggested.
+%    \begin{macrocode}
+  \newcommand{\contact}[2]{%
+      ##1 & ##2\\%
+    }%
+%    \end{macrocode}
+%
+% The name of the instructor appears in bold.
+%    \begin{macrocode}
+  \noindent%
+  \textbf{#1}\\[0.5ex]%
+%    \end{macrocode}
+%
+% The \verb|instructor| \texttt{instructor} environment uses a tabular format to typeset contact information.
+% The ordinary leading space on the left of the tabular environment is suppressed.
+%    \begin{macrocode}
+  \begin{tabular}{@{}ll}%
+  }{%
+    \end{tabular}%
+}
+%    \end{macrocode}
+%
+% \Finale
+\endinput
