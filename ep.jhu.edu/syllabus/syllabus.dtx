@@ -97,18 +97,20 @@
 % }
 %
 % \section{Implementation}
-% Redefine maketitle to print the name of the course followed by "Syllabus" on the following line.
+% Redefine maketitle to print the name of the course using the Johns Hopkins blue color scheme.
 %    \begin{macrocode}
 \renewcommand{\maketitle}{%
   \thispagestyle{plain}%
   \noindent%
   {%
     \Large\bfseries%
-    \textcolor{bluejay}{\@title\@thanks}\\[2ex]%
-	\textcolor{bluejay}{Syllabus}%
+    \textcolor{bluejay}{\@title\@thanks}%
   }%
 }
 %    \end{macrocode}
+% \changes{0.9.1}{2014/01/20}{
+%   Remove 'Syllabus' from automatically appearing in title.
+% }
 %
 % Modify the sectioning commands to omit the number and change the font color.
 %    \begin{macrocode}
