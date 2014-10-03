@@ -106,7 +106,7 @@
 \renewcommand{\maketitle}{%
   \begin{center}%
     \Large\bfseries%
-    \textcolor{bluejay}{\@title}%
+    \textcolor{BlueJay}{\@title}%
     \@thanks%
   \end{center}%
 }
@@ -124,7 +124,7 @@
 %    \begin{macrocode}
 \titleformat{\section}%
   [hang]%
-  {\large\bfseries\color{bluejay}}%
+  {\large\bfseries\color{BlueJay}}%
   {}%
   {0pt}%
   {\vspace*{-0.5\baselineskip}}%
@@ -135,7 +135,7 @@
 % \begin{macro}{subsection}
 \titleformat{\subsection}%
   [hang]%
-  {\bfseries\color{bluejay}}%
+  {\bfseries\color{BlueJay}}%
   {}%
   {0pt}%
   {\vspace*{-0.5\baselineskip}}%
@@ -147,8 +147,11 @@
 %
 % Define the Johns Hopkins blue color for titles.
 %    \begin{macrocode}
-\definecolor{bluejay}{RGB}{0,103,172}
+\definecolor{BlueJay}{RGB}{0,103,172}
 %    \end{macrocode}
+% \changes{1.0.0}{2014/10/03}{
+%   Change name from ``bluejay'' to ``BlueJay''
+% }
 %
 % Use a sans serif font by default.
 %    \begin{macrocode}
