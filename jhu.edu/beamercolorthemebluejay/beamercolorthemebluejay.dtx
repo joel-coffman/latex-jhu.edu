@@ -1,0 +1,200 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2014 by Joel Coffman
+% -----------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%   http://www.latex-project.org/lppl.txt
+%
+% and version 1.2 or later is part of all distributions of LaTeX
+% version 1999/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{beamercolorthemebluejay}
+%<package>  [2015/10/09 v0.0.1 Beamer color theme for Johns Hopkins University]
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{beamerarticle}
+\input{.version}
+\usepackage{beamercolorthemebluejay}
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{url}
+
+\newcommand{\testcolor}[1]{%
+  \fboxsep0pt%
+  \fbox{%
+    \colorbox{#1}%
+    {\phantom{XX}}%
+  }%
+}
+
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{beamercolorthemebluejay.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+% {Upper-case   \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+% Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+% Digits        \0\1\2\3\4\5\6\7\8\9
+% Exclamation   \!     Double quote  \"     Hash (number) \#
+% Dollar        \$     Percent       \%     Ampersand     \&
+% Acute accent  \'     Left paren    \(     Right paren   \)
+% Asterisk      \*     Plus          \+     Comma         \,
+% Minus         \-     Point         \.     Solidus       \/
+% Colon         \:     Semicolon     \;     Less than     \<
+% Equals        \=     Greater than  \>     Question mark \?
+% Commercial at \@     Left bracket  \[     Backslash     \\
+% Right bracket \]     Circumflex    \^     Underscore    \_
+% Grave accent  \`     Left brace    \{     Vertical bar  \|
+% Right brace   \}     Tilde         \~}
+%
+%
+% \changes{0.0.1}{2015/10/09}{%
+%   Initial version
+% }
+%
+% \GetFileInfo{beamercolorthemebluejay.sty}
+%
+% \DoNotIndex{\#,\$,\%,\&,\@,\\,\{,\},\^,\_,\~,\ }
+% \DoNotIndex{\@ne}
+% \DoNotIndex{\advance,\begingroup,\catcode,\closein}
+% \DoNotIndex{\closeout,\day,\def,\edef,\else,\empty,\endgroup}
+% \DoNotIndex{\global,\let,\relax}
+%
+% \DoNotIndex{\if@beamercolorthemebluejay@gray,
+%             \@beamercolorthemebluejay@graytrue}
+%
+% \title{The \textsf{beamercolorthemebluejay} package}
+% \author{Joel Coffman\\\texttt{joel.coffman@jhu.edu}}
+%
+% \maketitle
+%
+% \begin{abstract}
+% A Beamer color theme for Johns Hopkins University.
+% The ``bluejay'' color theme\footnote{
+% This document corresponds to
+% \textsf{beamercolorthemebluejay}~\fileversion-\version, dated \filedate.
+% } defines and uses colors from the official color palette of Johns Hopkins University.
+% \end{abstract}
+%
+% \section{Usage}
+% Per Beamer's documentation, this color theme should be loaded via the following command:
+% \begin{minted}[
+%   gobble=2,
+% ]{latex}
+   \usecolortheme{bluejay}
+% \end{minted}
+%
+% \subsection*{Options}
+%
+% \paragraph{gray}
+% The \mintinline{latex}{gray} option uses a light gray rather than white background for slides.
+%
+% \StopEventually{
+%   \PrintChanges
+%   \PrintIndex
+% }
+%
+% \appendix
+%
+% \iffalse
+%<*package>
+% \fi
+%
+% \section{Implementation}
+% See Beamer's documentation and the implementation of various themes for more information about the color palettes and color commands.
+% The \mintinline{latex}{default} color theme\footnote{%
+%   \url{http://mirrors.ctan.org/macros/latex/contrib/beamer/base/themes/color/beamercolorthemedefault.sty}
+% } is a particularly good resource for the available color commands.
+%
+% \subsection{Options}
+% Declare options and corresponding \LaTeX{} conditionals.
+%
+%    \begin{macrocode}
+\newif\if@beamercolorthemebluejay@gray\relax
+\DeclareOption{gray}{
+  \@beamercolorthemebluejay@graytrue
+}
+%    \end{macrocode}
+%
+% Process options.
+% \mintinline{latex}{\relax} prevents unnecessary lookahead.
+%    \begin{macrocode}
+\ProcessOptions\relax
+%    \end{macrocode}
+%
+% \subsection{Colors}
+% Define colors from the Johns Hopkins color palette.
+% See \url{http://brand.jhu.edu/color/} for additional colors and usage guidelines.
+%    \begin{macrocode}
+\definecolor{PMS Gray 1}{RGB}{229,226,224}
+\definecolor{PMS Gray 4}{RGB}{74,72,76}
+\definecolor{PMS Gray 5}{RGB}{44,44,51}
+\definecolor{PMS 173C}{RGB}{207,69,32}
+\definecolor{PMS 179C}{RGB}{224,60,49}
+\definecolor{PMS 284C}{RGB}{114,172,229}
+\definecolor{PMS 300C}{RGB}{0,94,184}
+\definecolor{PMS 341C}{RGB}{0,122,82}
+%    \end{macrocode}
+%
+% \subsection{Theme}
+% Override colors used by Beamer's color palettes.
+%
+% \mintinline{latex}{normal text} defines the most basic style for a presentation when another color palette does not apply.
+%    \begin{macrocode}
+\setbeamercolor{normal text}{
+%    \end{macrocode}
+% Use light gray background \testcolor{PMS Gray 1!50} if the \mintinline{latex}{gray} option is specified.
+%    \begin{macrocode}
+  bg=\if@beamercolorthemebluejay@gray PMS Gray 1!50\else white\fi,
+%    \end{macrocode}
+% Use dark gray foreground. \testcolor{PMS Gray 5}
+% \mintinline{latex}{black} could be used instead, but
+% \mintinline{latex}{PMS Gray 5} appears in the university's color palette.
+%    \begin{macrocode}
+  fg=PMS Gray 5,
+}
+%    \end{macrocode}
+%
+% \mintinline{latex}{alerted text} is a dusky red. \testcolor{PMS 173C}
+%    \begin{macrocode}
+\setbeamercolor{alerted text}{
+  fg=PMS 173C,
+}
+%    \end{macrocode}
+%
+% \mintinline{latex}{example text} is a dark green. \testcolor{PMS 341C}
+%    \begin{macrocode}
+\setbeamercolor{example text}{
+  fg=PMS 341C,
+}
+%    \end{macrocode}
+%
+% The \mintinline{latex}{structure} color palette is derived from a medium blue. \testcolor{PMS 300C}
+% Shades of this color are used for most elements in the presentation.
+%    \begin{macrocode}
+\setbeamercolor{structure}{
+  fg=PMS 300C,
+}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+%
+% \Finale
