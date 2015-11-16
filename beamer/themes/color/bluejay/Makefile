@@ -3,4 +3,4 @@ default: beamercolorthemebluejay.sty beamercolorthemebluejay.pdf
 
 beamercolorthemebluejay.pdf: beamercolorthemebluejay.sty
 
-include ../../Makefile.mk
+include ../../../../Makefile.mk
