@@ -1,5 +1,9 @@
 .PHONY: default
-default: beamerthemejhu.sty beamerthemejhu.pdf
+default: minted beamerthemejhu.sty beamerthemejhu.pdf
+
+.PHONY: minted
+minted:
+	if ! [ -d $@ ]; then mkdir --parents $@; fi
 
 beamerthemejhu.pdf: beamerthemejhu.sty
 
