@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{beamerthemejhu.edu.edu}
-%<package>  [2015/11/25 v0.1.0 Beamer theme for JHU]
+%<package>  [2015/11/26 v0.1.1 Beamer theme for JHU]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -116,16 +116,21 @@
 %
 % \subsection{Configuration}
 %
+% \begin{macro}{logo}
 % Use the university logo.
 %    \begin{macrocode}
 \logo{
   \includegraphics[
-      trim=0 32.5 0 35,
       clip,
+      trim=0 35 0 35,
       width=0.4\paperwidth,
   ]{{whiting.logo.small.horizontal.white}.eps}
 }
 %    \end{macrocode}
+% \changes{0.1.1}{2015/11/26}{
+%   Adjust trim to vertically center logo
+% }
+% \end{macro}
 %
 % \iffalse
 %</package>

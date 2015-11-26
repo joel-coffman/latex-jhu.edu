@@ -15,7 +15,7 @@
 \input docstrip.tex
 \keepsilent
 
-\usedir{tex/latex/beamerthemejhu}  % TODO
+\usedir{tex/latex/beamer/themes/theme/ep.jhu.edu}
 
 \preamble
 
@@ -35,9 +35,17 @@ LaTeX version 1999/12/01 or later.
 
 \endpreamble
 
-\generate{\file{beamerthemejhu.sty}{\from{beamerthemejhu.dtx}{package}}}
-\generate{\nopreamble\nopostamble%
-    \file{jhu-ep-logo.eps}{\from{beamerthemejhu.dtx}{jhu-ep-logo.eps}}}
+\generate{
+  \file{beamerthemeep.jhu.edu.sty}{
+    \from{beamerthemeep.jhu.edu.dtx}{package}
+  }
+}
+\generate{
+  \nopreamble\nopostamble%
+  \file{jhu-ep-logo.eps}{
+    \from{beamerthemeep.jhu.edu.dtx}{jhu-ep-logo.eps}
+  }
+}
 
 \Msg{*********************************************************}
 \Msg{*}
