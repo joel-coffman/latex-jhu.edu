@@ -84,7 +84,7 @@
 % Hence, the template's \mintinline{latex}|\header| macro is not supported and the title should be specified using \mintinline{latex}|\title| and \mintinline{latex}|\maketitle| rather than inserting it manually.
 %
 % \section{Inconsistencies}\label{section:inconsistencies}
-% This section describes the known inconsistencies with the standard template.
+% This section describes known inconsistencies with the standard template.
 %
 % \paragraph{Fonts}
 % The syllabus template uses the \textsf{times} package, which sets the default font to Adobe Times Roman.
@@ -98,19 +98,33 @@
 %     autogobble,
 %     breaklines,
 % ]{latex}{minted/times.out}
-% Note that the \textsf{times} package is considered obsolete.\footnote{%
+% \noindent
+% although the \textsf{times} package is considered obsolete.\footnote{%
 %   \url{https://www.ctan.org/pkg/times}
 % }
 %
-% \paragraph{Paragraphs}
-% The syllabus template specifies no paragraph indent, which may cause consecutive paragraphs to be indistinguishable from each other (particularly when the last line of the first paragraph fills the entire last line).
+% \paragraph{Page Style}
+% The syllabus template omits page numbers and other text from the header and footer.
+% To produce this effect, use
+% \begin{VerbatimOut}[gobble=2]{minted/pagestyle.out}
+% \pagestyle{empty}
+% \end{VerbatimOut}
+% \inputminted[
+%     autogobble,
+%     breaklines,
+% ]{latex}{minted/pagestyle.out}
+% \noindent
+% in the document preamble.
 %
-% The \textsf{parskip} package replaces paragraph indentation with vertical space between paragraphs and is better than overriding \mintinline{latex}|\parskip| manually.
+% \paragraph{Paragraphs}
+% The syllabus template specifies no paragraph indent, which may cause two consecutive paragraphs to be indistinguishable from each other (particularly when the last line of the first paragraph fills the entire last line).
+%
+% The \textsf{parskip} package replaces paragraph indentation with vertical space between paragraphs and is preferable to naively overriding \mintinline{latex}|\parindent| and \mintinline{latex}|\parskip| manually.
 % Those using the \textsf{parskip} package should be aware of its limitations~\cite{partl2001parskip}.
 %
 % \paragraph{Sections}
 % The syllabus template's \mintinline{latex}|\header| macro is not supported by this package.
-% Use standard \LaTeX\ sectioning commands instead (e.g., \mintinline{latex}|\section|).
+% Use standard \LaTeX\ sectioning commands instead (e.g., \mintinline{latex}|\section| and \mintinline{latex}|\subsection|).
 %
 % If sections should be unnumbered, use the starred forms of the commands (e.g., \mintinline{latex}|\section*|).
 % Otherwise, all sections will be numbered, following the format of the document class.
@@ -140,19 +154,23 @@
 %    \end{macrocode}
 % Identify package and version.
 %    \begin{macrocode}
-\ProvidesPackage{syllabus}
-  [2016/04/22 v0.0.1 Style file for JHU's Whiting School of Engineering syllabi]
+\ProvidesPackage{syllabus}[%
+    2016/04/22 %
+    v0.0.1 %
+    Style file for JHU's Whiting School of Engineering syllabi%
+]
 %    \end{macrocode}
 %
 % \subsection{Packages}
 % Load packages required by this one.
 %
-% \textsf{graphicx} is used to embed the logo above the title.
+% \textsf{graphicx} is used to embed the Whiting School of Engineering logo above the title.
 %    \begin{macrocode}
 \RequirePackage{graphicx}
 %    \end{macrocode}
 %
 % \textsf{epstopdf} converts the EPS logo into a PDF version.
+% \mintinline{latex}|update| converts the source image if the target does not exist or is older than the source.
 %    \begin{macrocode}
 \RequirePackage[
     update,
@@ -160,6 +178,7 @@
 %    \end{macrocode}
 %
 % \textsf{geometry} modifies the default margin size.
+% Use a 1-inch margin on all pages.
 %    \begin{macrocode}
 \RequirePackage[
     margin=1in,
@@ -172,8 +191,11 @@
 %    \end{macrocode}
 %
 % \subsection{Macros}
+% This section describes the macros in the \textsf{syllabus} package.
+% Most macros are redefinitions of existing macros to customize their style.
+%
 % \begin{macro}{maketitle}
-%   Redefine \mintinline{latex}|\maketitle| to print the name of the course using the Johns Hopkins blue color scheme.
+%   Redefine \mintinline{latex}|\maketitle| to include the university logo followed by the title (and optional thanks).
 %    \begin{macrocode}
 \renewcommand{\maketitle}{%
   \begin{center}%
@@ -259,6 +281,11 @@
 % \Finale
 %
 %\iffalse
+%
+% The Whiting School of Engineering logo is embedded below so it can be
+% automatically extracted from the DTX (Document LaTeX source). The Johns
+% Hopkins University logos are available from http://brand.jhu.edu/.
+%
 %<*whiting.logo.small.horizontal.black.eps>
 %
 %<<whiting.logo.small.horizontal.black.eps
