@@ -126,7 +126,7 @@
 % The syllabus template's \mintinline{latex}|\header| macro is not supported by this package.
 % Use standard \LaTeX\ sectioning commands instead (e.g., \mintinline{latex}|\section| and \mintinline{latex}|\subsection|).
 %
-% If sections should be unnumbered, use the starred forms of the commands (e.g., \mintinline{latex}|\section*|).
+% If sections should not be numbered, use the \mintinline{latex}|unnumbered| package option or starred forms of the commands (e.g., \mintinline{latex}|\section*|).
 % Otherwise, all sections will be numbered, following the format of the document class.
 %
 % {
@@ -156,9 +156,36 @@
 %    \begin{macrocode}
 \ProvidesPackage{syllabus}[%
     2016/08/05 %
-    v0.1.0 %
+    v0.1.1 %
     Style file for JHU's Whiting School of Engineering syllabi%
 ]
+%    \end{macrocode}
+%
+% \subsection{Packages}
+% Declare package options.
+%
+% \paragraph{unnumbered}
+% The \mintinline{latex}|unnumbered| option omits section numbers.
+% It's effect is similar to using \mintinline{latex}|\section*| instead of \mintinline{latex}|\section|.
+%
+% Declare conditional.
+%    \begin{macrocode}
+\newif\ifsyllabus@unnumbered\relax
+%    \end{macrocode}
+% Set conditional.
+%    \begin{macrocode}
+\DeclareOption{unnumbered}{%
+  \syllabus@unnumberedtrue%
+}%
+%    \end{macrocode}
+% \changes{0.1.1}{2016/08/05}{
+%   Add unnumbered package option
+% }
+%
+% Process options.
+% \mintinline{latex}|\relax| avoids unnecessary lookahead due to the starred form of \mintinline{latex}|\ProcessOptions|.
+%    \begin{macrocode}
+\ProcessOptions\relax%
 %    \end{macrocode}
 %
 % \subsection{Packages}
@@ -218,8 +245,8 @@
     {\section}% command
     [hang]% shape
     {\bfseries}% format
-    {\thesection}% label
-    {1em}% sep
+    {\ifsyllabus@unnumbered\else\thesection\fi}% label
+    {\ifsyllabus@unnumbered0em\else1em\fi}% sep
     {}% before-code
 %    \end{macrocode}
 %  Use the equivalent of \mintinline{latex}|\bigbreak| prior to the section title.
@@ -239,8 +266,8 @@
   {\subsection}% command
   [hang]% shape
   {\bfseries}% format
-  {\thesubsection}% label
-  {1em}% sep
+  {\ifsyllabus@unnumbered\else\thesubsection\fi}% label
+  {\ifsyllabus@unnumbered0em\else1em\fi}% sep
   {}% before-code
 %    \end{macrocode}
 %  Use the equivalent of \mintinline{latex}|\medbreak| prior to the section title.
@@ -260,8 +287,8 @@
   {\subsubsection}% command
   [hang]% shape
   {\bfseries}% format
-  {\thesubsubsection}% label
-  {1em}% sep
+  {\ifsyllabus@unnumbered\else\thesubsubsection\fi}% label
+  {\ifsyllabus@unnumbered0em\else1em\fi}% sep
   {}% before-code
 %    \end{macrocode}
 %  Use the equivalent of \mintinline{latex}|\smallbreak| prior to the section title.
