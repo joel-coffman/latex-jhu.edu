@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{beamerthemejhuapl.edu}
-%<package>  [2016/02/19 v0.1.2 Beamer theme for JHU/APL]
+%<package>  [2016/10/13 v0.1.3 Beamer theme for JHU/APL]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -111,11 +111,13 @@
 % See Beamer's documentation and the implementation of various themes for more information about the color palettes and color commands.
 %
 % \subsection{Required Packages}
-% Use predefined themes as basic style.
+% Use \textsf{jhu.edu} theme for the basic style.
 %    \begin{macrocode}
-\usecolortheme{bluejay}
-\useoutertheme{logo}
+\usetheme{jhu.edu}
 %    \end{macrocode}
+% \changes{0.1.3}{2016/10/13}{
+%   Inherit from the jhu.edu theme
+% }
 %
 % \subsection{Configuration}
 %
