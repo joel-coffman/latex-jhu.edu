@@ -15,8 +15,11 @@
 *.ilg
 *.ind
 *.log
+*.nav
 *.out
 *.pdf
+*.snm
+*.toc
 
 *.synctex.gz
 _minted-*

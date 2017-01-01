@@ -18,25 +18,23 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{beamercolorthemebluejay}
-%<package>  [2015/10/09 v0.0.1 Beamer color theme for Johns Hopkins University]
+%<package>  [2016/12/31 v0.0.1 Beamer color theme for Johns Hopkins University]
 %
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{beamerarticle}
 
-\input{.version}
-\usepackage{beamercolorthemebluejay}
-
+\usepackage{graphicx}
 \usepackage{minted}
 \usepackage{url}
 
-\newcommand{\testcolor}[1]{%
-  \fboxsep0pt%
-  \fbox{%
-    \colorbox{#1}%
-    {\phantom{XX}}%
-  }%
-}
+\usepackage{theme-doc}
+
+\usepackage{beamercolorthemebluejay}
+
+
+\input{.version}
+
 
 \EnableCrossrefs
 \CodelineIndex
@@ -102,6 +100,20 @@
 % ]{latex}
   \usecolortheme{bluejay}
 % \end{minted}
+%
+% The following images illustrate the theme's style.
+%
+% \begin{figure}[!h]
+%    \includegraphics[
+%        page=1,
+%        width=0.49\linewidth,
+%    ]{example}
+%    \hfill
+%    \includegraphics[
+%        page=2,
+%        width=0.49\linewidth,
+%    ]{example}
+% \end{figure}
 %
 % \subsection*{Options}
 %
