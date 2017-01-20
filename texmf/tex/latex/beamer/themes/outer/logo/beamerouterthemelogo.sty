@@ -22,27 +22,122 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerouterthemelogo}
-  [2016/12/31 v0.1.2 Beamer outer theme for including organizational logos]
+  [2017/01/20 v0.2.0 Beamer outer theme for including organizational logos]
+\RequirePackage{etoolbox}
+\RequirePackage{pgfopts}
 \newif\if@beamerouterthemelogo@right\relax
-\DeclareOption{right}{
-  \@beamerouterthemelogo@righttrue
+\newif\if@beamerouterthemelogo@split\relax
+\newif\if@beamerouterthemelogo@tree\relax
+\pgfkeys{
+  /beamer/themes/outer/logo/.cd,
+  base/.is choice,
+  base/.value required,
+  base/.append code={\def\@beamerouterthemelogo@base{#1}},
+  base/split/.code={\@beamerouterthemelogo@splittrue},
+  base/tree/.code={\@beamerouterthemelogo@treetrue},
+  position/.is choice,
+  position/.value required,
+  position/left/.code=\@beamerouterthemelogo@rightfalse,
+  position/right/.code=\@beamerouterthemelogo@righttrue,
 }
-\ProcessOptions\relax
+\pgfkeys{
+  /beamer/themes/outer/logo/.cd,
+  base=split,
+  position=right,
+}
+\ProcessPgfOptions{/beamer/themes/outer/logo}
 \setbeamercolor*{palette quaternary}{
   bg=structure.fg,
   fg=white,
   use=structure,
 }
-\useoutertheme{split}
+\useoutertheme{\@beamerouterthemelogo@base}
 \usefonttheme[onlysmall]{structurebold}
+\setbeamercolor*{logo in head/foot}{%
+  bg=structure.bg,  % transparent background
+  use=structure,
+}%
 \defbeamertemplate*{sidebar right}{logo theme}
 {
   \vfill%
   \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
   \vskip2pt%
 }
-\defbeamertemplate*{headline}{logo theme}
-{%
+\defbeamertemplate*{headline}{logo theme}{%
+\ifdefstring{\@beamerouterthemelogo@base}{tree}{%
+  \smash{% ignore height and depth
+    \rlap{% "right overlap" to align box at left
+      \raisebox{-\headheight}[0ex][0ex]{%
+        \if@beamerouterthemelogo@right%
+          \hspace{0.66\paperwidth}%
+        \fi%
+        \begin{beamercolorbox}[
+            ht=\headheight,
+            \if@beamerouterthemelogo@right right\else left\fi,
+            wd=0.34\paperwidth,
+        ]{logo in head/foot}%
+          \vbox to \headheight{\vfil\insertlogo\vfil}%
+        \end{beamercolorbox}%
+      }% END raisebox
+    }% END rlap
+  }% END smash
+  \if@beamerouterthemelogo@right\else%
+    \hspace{0.34\paperwidth}%
+  \fi%
+  \begin{beamercolorbox}[wd=0.66\paperwidth,colsep=1.5pt]{upper separation line head}
+  \end{beamercolorbox}
+
+  \if@beamerouterthemelogo@right\else%
+    \hspace{0.34\paperwidth}%
+  \fi%
+  \begin{beamercolorbox}[wd=0.66\paperwidth,ht=2.5ex,dp=1.125ex,%
+    leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}
+
+  \if@beamerouterthemelogo@right\else%
+    \hspace{0.34\paperwidth}%
+  \fi%
+  \begin{beamercolorbox}[wd=0.66\paperwidth,ht=2.5ex,dp=1.125ex,%
+    leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
+    \usebeamerfont{section in head/foot}%
+    \ifbeamer@tree@showhooks
+      \setbox\beamer@tempbox=\hbox{\insertsectionhead}%
+      \ifdim\wd\beamer@tempbox>1pt%
+        \hskip2pt\raise1.9pt\hbox{\vrule width0.4pt height1.875ex\vrule width 5pt height0.4pt}%
+        \hskip1pt%
+      \fi%
+    \else%
+      \hskip6pt%
+    \fi%
+    \insertsectionhead
+  \end{beamercolorbox}
+
+  \if@beamerouterthemelogo@right\else%
+    \hspace{0.34\paperwidth}%
+  \fi%
+  \begin{beamercolorbox}[wd=0.66\paperwidth,ht=2.5ex,dp=1.125ex,%
+    leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+    \usebeamerfont{subsection in head/foot}%
+    \ifbeamer@tree@showhooks
+      \setbox\beamer@tempbox=\hbox{\insertsubsectionhead}%
+      \ifdim\wd\beamer@tempbox>1pt%
+        \hskip9.4pt\raise1.9pt\hbox{\vrule width0.4pt height1.875ex\vrule width 5pt height0.4pt}%
+        \hskip1pt%
+      \fi%
+    \else%
+      \hskip12pt%
+    \fi%
+    \insertsubsectionhead
+  \end{beamercolorbox}
+
+  \if@beamerouterthemelogo@right\else%
+    \hspace{0.34\paperwidth}%
+  \fi%
+  \begin{beamercolorbox}[wd=0.66\paperwidth,colsep=1.5pt]{lower separation line head}
+  \end{beamercolorbox}
+}{}%
+\ifdefstring{\@beamerouterthemelogo@base}{split}{%
   \leavevmode%
   \@tempdimb=2.4375ex%
   \ifnum\beamer@subsectionmax<\beamer@sectionmax%
@@ -56,80 +151,89 @@
       \@tempdimb=.5in%
     \fi%
     \if@beamerouterthemelogo@right\else%
+      \setbeamercolor*{logo in head/foot}{%
+        bg=section in head/foot.bg,
+        use=section in head/foot,
+      }%
       \begin{beamercolorbox}[%
           ht=\@tempdimb,%
-          wd=.4\paperwidth,%
-      ]{section in head/foot}%
+          wd=.34\paperwidth,%
+      ]{logo in head/foot}%
         \smash{\rlap{\vbox to\@tempdimb{\vfil\insertlogo\vfil}}}
       \end{beamercolorbox}%
     \fi%
     \begin{beamercolorbox}[%
         ht=\@tempdimb,%
-        wd=.3\paperwidth,%
+        wd=.33\paperwidth,%
     ]{section in head/foot}%
       \vbox to\@tempdimb{%
         \vfil%
-        \insertsectionnavigation{.3\paperwidth}%
+        \insertsectionnavigation{.33\paperwidth}%
         \vfil%
       }%
     \end{beamercolorbox}%
     \begin{beamercolorbox}[%
         ht=\@tempdimb,
-        wd=.3\paperwidth,
+        wd=.33\paperwidth,
     ]{subsection in head/foot}%
       \vbox to\@tempdimb{%
         \vfil%
-        \insertsubsectionnavigation{.3\paperwidth}%
+        \insertsubsectionnavigation{.33\paperwidth}%
         \vfil%
       }%
     \end{beamercolorbox}%
     \if@beamerouterthemelogo@right%
+      \setbeamercolor*{logo in head/foot}{%
+        bg=subsection in head/foot.bg,
+        use=subsection in head/foot,
+      }%
       \begin{beamercolorbox}[%
           ht=\@tempdimb,%
           right,%
-          wd=.4\paperwidth,%
-      ]{subsection in head/foot}%
+          wd=.34\paperwidth,%
+      ]{logo in head/foot}%
         \smash{\llap{\vbox to\@tempdimb{\vfil\insertlogo\vfil}}}
       \end{beamercolorbox}%
     \fi%
   \fi%
+}{}%
 }
 \defbeamertemplate*{footline}{logo theme}
 {%
   \leavevmode%
   \hbox{%
-    \begin{beamercolorbox}[%
+    \begin{beamercolorbox}[
         dp=1.125ex,%
         ht=2.5ex,%
         leftskip=1em,%
-        rightskip=1em,%
-        wd=0.4\paperwidth,%
-    ]{author in head/foot}%
+        rightskip=1em plus1fil,%
+        wd=0.66\paperwidth,%
+    ]{title in head/foot}%
       {%
-        \usebeamerfont{institute in head/foot}
-        \insertshortinstitute%
+        \usebeamerfont{date in head/foot}
+        \insertshortdate%
       }%
       \hfill%
       {%
-        \usebeamerfont{author in head/foot}%
-        \insertshortauthor%
+        \usebeamerfont{title in head/foot}%
+        \insertshorttitle%
       }
     \end{beamercolorbox}%
     \begin{beamercolorbox}[
         dp=1.125ex,%
         ht=2.5ex,%
         leftskip=1em,%
-        rightskip=1em plus1fil,%
-        wd=0.6\paperwidth,%
-    ]{title in head/foot}%
+        rightskip=1em,%
+        wd=0.34\paperwidth,%
+    ]{author in head/foot}%
       {%
-        \usebeamerfont{title in head/foot}%
-        \insertshorttitle%
+        \usebeamerfont{author in head/foot}%
+        \insertshortauthor%
       }%
       \hfill%
       {%
         \usebeamerfont{page number in head/foot}%
-        \insertframenumber{} / \inserttotalframenumber%
+        \insertframenumber%
       }%
     \end{beamercolorbox}%
   }%
