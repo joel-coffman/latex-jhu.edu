@@ -6,4 +6,4 @@ beamercolorthemebluejay.pdf: beamercolorthemebluejay.sty example.pdf
 
 example.pdf: beamercolorthemebluejay.sty
 
-include ../../../../Makefile.mk
+include $(shell git rev-parse --show-toplevel)/Makefile.mk

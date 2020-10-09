@@ -4,4 +4,4 @@ default: syllabus.sty syllabus.pdf
 syllabus.sty:
 syllabus.pdf: syllabus.sty
 
-include ../../Makefile.mk
+include $(shell git rev-parse --show-toplevel)/Makefile.mk

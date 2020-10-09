@@ -10,7 +10,7 @@ beamerthemejhu.edu.pdf: beamerthemejhu.edu.sty example.pdf | minted
 
 example.pdf: beamerthemejhu.edu.sty
 
-include ../../../../Makefile.mk
+include $(shell git rev-parse --show-toplevel)/Makefile.mk
 
 # fall-back for Beamer themes
 beamercolorthemebluejay.sty:
