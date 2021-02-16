@@ -79,11 +79,32 @@ ifneq ($(words $(archive)),1)
 archive = $(notdir $(CURDIR)).zip
 endif
 
-$(archive): $(package)
-	zip $(archive) $(package)
+# target-specific variables
+%.zip: directory := $(shell mktemp --directory)
+%.zip: package_name = $(basename $@)
+
+%.zip: $(package)
+	mkdir $(directory)/$(package_name)
+	cp $(package) $(directory)/$(package_name)
+	cd $(directory) && zip -r $@ $(package_name)
+	mv $(directory)/$@ $@
+	$(RM) --recursive $(directory)
 
 .PHONY: dist
 dist: $(archive)
+
+.PHONY: distcheck
+distcheck: dist
+	unzip -l $(archive) | grep '$(basename $(archive))/$$'  # package directory
+	unzip -l $(archive) | grep '\.dtx$$'  # documented LaTeX (source)
+	unzip -l $(archive) | grep '\.ins$$'  # installer
+	unzip -l $(archive) | grep '\.pdf$$'  # documentation
+
+_dist_derivatives += $(archive)
+
+.PHONY: distclean
+distclean:
+	$(RM) $(_dist_derivatives)
 
 
 ifneq ($(shell git rev-parse --show-toplevel 2> /dev/null),)
