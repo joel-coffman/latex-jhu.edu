@@ -67,6 +67,25 @@ veryclean: clean
 force: veryclean default
 
 
+package = \
+        $(wildcard *.dtx) \
+        $(wildcard *.ins) \
+        $(patsubst %.dtx,%.pdf,$(wildcard *.dtx)) \
+        $(wildcard README)
+
+archive = $(patsubst %.dtx,%.zip,$(wildcard *.dtx))
+# multiple packages (i.e., bundle) => use the directory as the package name
+ifneq ($(words $(archive)),1)
+archive = $(notdir $(CURDIR)).zip
+endif
+
+$(archive): $(package)
+	zip $(archive) $(package)
+
+.PHONY: dist
+dist: $(archive)
+
+
 ifneq ($(shell git rev-parse --show-toplevel 2> /dev/null),)
 VERSION:=$(shell git describe --abbrev=12 --always --dirty=+ | sed 's/.*/\\\\providecommand{\\\\version}{&}/')
 endif

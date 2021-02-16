@@ -32,3 +32,6 @@ _minted-*
 # derivative files generated via .ins and .dtx
 *.cls
 *.sty
+
+# package distribution archive
+*.zip
