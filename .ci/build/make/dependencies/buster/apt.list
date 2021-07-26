@@ -7,6 +7,7 @@ texlive
 texlive-bibtex-extra
 texlive-font-utils
 texlive-fonts-extra
+texlive-fonts-recommended
 texlive-generic-extra
 texlive-latex-extra
 unzip
