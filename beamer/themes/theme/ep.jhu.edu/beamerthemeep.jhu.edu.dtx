@@ -388,8 +388,6 @@
 % \subsubsection{Title Page}
 % The title page template features Gilman Hall in the background with the Whiting School of Engineering logo prominently displayed in the top left corner.
 %    \begin{macrocode}
-\RequirePackage{xpatch}
-\xpatchcmd{\titlepage}{\usebeamertemplate*}{\usebeamertemplate}{}{}
 \defbeamertemplate*{title page}{ep.jhu.edu}[1][]{%
 %    \end{macrocode}
 % Suppress the headline, footline, and sidebars on the current frame by manually setting the corresponding key.
@@ -478,11 +476,6 @@
     }%
   \endgroup
   \vskip0pt plus 1filll  % https://tex.stackexchange.com/a/64759
-%    \end{macrocode}
-%    \begin{macrocode}
-  % NOTE: The prior boxes consume most of the space on the slide
-  \setbeamercolor{normal text}{fg=white}
-  \setbeamercolor{structure}{fg=white}
 %    \end{macrocode}
 %    \begin{macrocode}
 }
