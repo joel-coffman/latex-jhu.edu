@@ -4,11 +4,11 @@ git
 make
 python3-pip
 python-is-python3
+tex-gyre
 texlive
 texlive-bibtex-extra
 texlive-font-utils
 texlive-fonts-extra
-texlive-fonts-recommended
 texlive-latex-extra
 texlive-plain-generic
 unzip
