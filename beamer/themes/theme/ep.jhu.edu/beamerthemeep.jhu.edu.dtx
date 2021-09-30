@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{beamerthemeep.jhu.edu}
-%<package>  [2021/07/26 v0.2.0 Beamer theme for JHU]
+%<package>  [2021/09/30 v0.2.1 Beamer theme for JHU]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -27,11 +27,15 @@
 \input{.version}
 \usepackage{beamerthemeep.jhu.edu}
 
+\usepackage{glossaries}
 \usepackage{graphicx}
 \usepackage{minted}
 
 \usepackage{email}
 \usepackage{theme-doc}
+
+% glossaries
+\loadglsentries{acronyms}
 
 \EnableCrossrefs
 \CodelineIndex
@@ -138,6 +142,11 @@
 %    \end{macrocode}
 %
 % \subsection{Packages}
+% Require the \textsf{epstopdf} package for \gls{EPS} images.
+%    \begin{macrocode}
+\RequirePackage{epstopdf}
+%    \end{macrocode}
+%
 % Require the \textsf{pgfopts} package to parse package options.
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
@@ -146,6 +155,11 @@
 % Require the \textsf{tikz} package to place graphics (e.g., logos) at specific locations in frames.
 %    \begin{macrocode}
 \RequirePackage{tikz}
+%    \end{macrocode}
+%
+% Require the \textsf{xpatch} package to patch other packages.
+%    \begin{macrocode}
+\RequirePackage{xpatch}
 %    \end{macrocode}
 %
 % Use \TeX{} Clear Sans as a substitute for Tahoma.
@@ -179,6 +193,22 @@
 %    \end{macrocode}
 %
 % \subsection{Configuration}
+% Patch \textsf{epstopdf} to search for \gls{EPS} images using \texttt{TEXINPUTS} (courtesy of \texttt{kpsewhich}).  ^^A https://bit.ly/3uuC3EP
+%
+%    \begin{macrocode}
+\xpatchcmd{\ETE@epstopdf}{#1}{%
+  `kpsewhich \space "\SourceFile"`
+}{}{%
+  \PackageWarning{beamerthemeep.jhu.edu}{%
+      Unable to patch epstopdf to search for EPS images; place EPS
+      images provided by theme in same directory as the document%
+  }%
+}%
+%    \end{macrocode}
+% \changes{0.2.1}{2021/09/30}{%
+%   Patch epstopdf to search for images using kpsewhich
+% }
+%
 % Use the EP logo.
 %    \begin{macrocode}
 \logo{%
