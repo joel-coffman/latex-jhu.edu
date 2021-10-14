@@ -74,6 +74,9 @@
 % \changes{0.2.0}{2021/07/26}{
 %   Align theme with Microsoft PowerPoint template
 % }
+% \changes{0.2.2}{2021/10/14}{
+%   Add support for notes
+% }
 %
 % \GetFileInfo{beamerthemeep.jhu.edu.sty}
 %
@@ -125,6 +128,17 @@
 %        width=0.49\linewidth,
 %    ]{example}
 % \end{figure}
+%
+% \section{Issues}
+%
+% The following list summarizes known issues with this theme:
+% \begin{itemize}
+%   \item
+%   The title page and end page do not display correctly when using Beamer's \textsf{show only notes} option due to a conflict with the implementation of Ti\textit{k}Z's \textsf{remember picture} option.\footnote{%
+%     See \url{https://tex.stackexchange.com/a/369326} for more details.
+%   }
+%   While it likely possible to manually center the image, the colors---particularly gradients---would be difficult to reproduce without using Ti\textit{k}Z.
+% \end{itemize}
 %
 % \appendix
 %
@@ -266,27 +280,43 @@
   fg=Pantone 288 C,
 }
 %    \end{macrocode}
+%
+% Special care is taken to ensure that the title page and end page remain visible when using Beamer's \textsf{show only notes} option (in which case |\ifbeamer@notesnormals| is false and the colors specified by \textsf{color} are used).
 % ^^A TODO: Inherit from structure (or another color palette)
 %    \begin{macrocode}
-\setbeamercolor{author}{
+\ifbeamer@notesnormals
+  \setbeamercolor{author}{
+    fg=white,
+  }
+  \setbeamercolor{copyright}{
+    fg=white,
+  }
+  \setbeamercolor{date}{
+    fg=white,
+  }
+  \setbeamercolor{institute}{
+    fg=white,
+  }
+  \setbeamercolor{page number in head/foot}{
+    fg=black,
+  }
+  \setbeamercolor{subtitle}{
+    fg=white,
+  }
+  \setbeamercolor{title}{
+    fg=white,
+  }
+\fi% END beamer@notesnormals
+%    \end{macrocode}
+%    \begin{macrocode}
+\setbeamercolor{note date}{
   fg=white,
 }
-\setbeamercolor{copyright}{
-  fg=white,
+\setbeamercolor{note page}{
+  bg=PMS Gray 1,
 }
-\setbeamercolor{date}{
-  fg=white,
-}
-\setbeamercolor{institute}{
-  fg=white,
-}
-\setbeamercolor{page number in head/foot}{
-  fg=black,
-}
-\setbeamercolor{subtitle}{
-  fg=white,
-}
-\setbeamercolor{title}{
+\setbeamercolor{note title}{
+  bg=PMS 300C,
   fg=white,
 }
 %    \end{macrocode}
@@ -340,29 +370,33 @@
 %    \begin{macrocode}
   \global\beamer@plainframetrue%
 %    \end{macrocode}
+% Suppress the image when using Beamer's \textsf{show only notes} option, as it will not be visible.
+% ^^A TODO: Substitute another (non-white) logo
 %    \begin{macrocode}
-  \begin{tikzpicture}[
-      overlay,
-      remember picture,
-  ]
-    \node at (current page.center) {
-      \includegraphics[
-          height=\paperheight,
-          keepaspectratio,
-          width=\paperwidth,
-      ]{GilmanHall}
-    };
-    \shade[
-        left color=PMS 284C,
-        opacity=0.85,
-        right color=Pantone 7683 C,
-    ] (current page.north west) rectangle (current page.south east)+(-0.25\paperwidth,0);
-    \node at (current page.center) {
-      \includegraphics[
-          width=0.6\paperwidth,
-      ]{{whiting.logo.small.vertical.white}.eps}
-    };
-  \end{tikzpicture}%
+  \ifbeamer@notesnormals%
+    \begin{tikzpicture}[
+        overlay,
+        remember picture,
+    ]
+      \node at (current page.center) {
+        \includegraphics[
+            height=\paperheight,
+            keepaspectratio,
+            width=\paperwidth,
+        ]{GilmanHall}
+      };
+      \shade[
+          left color=PMS 284C,
+          opacity=0.85,
+          right color=Pantone 7683 C,
+      ] (current page.north west) rectangle (current page.south east)+(-0.25\paperwidth,0);
+      \node at (current page.center) {
+        \includegraphics[
+            width=0.6\paperwidth,
+        ]{{whiting.logo.small.vertical.white}.eps}
+      };
+    \end{tikzpicture}%
+  \fi% END beamer@notesnormals
   \usebeamertemplate{copyright}%
 }
 %    \end{macrocode}
@@ -436,42 +470,50 @@
 %    \begin{macrocode}
   \global\beamer@plainframetrue%
 %    \end{macrocode}
+% Suppress the background image and color when using Beamer's \textsf{show only notes} option, as they will not display correctly.
+% ^^A TODO: Substitute another (non-white) logo
+%    \begin{macrocode}
+  \ifbeamer@notesnormals%
+%    \end{macrocode}
 % Use a \texttt{tikzpicture} to specify the placement of background elements and the Whiting School of Engineering logo.
 %    \begin{macrocode}
-  \begin{tikzpicture}[
-      overlay,
-      remember picture,
-  ]
+    \begin{tikzpicture}[
+        overlay,
+        remember picture,
+    ]
 %    \end{macrocode}
 % Insert the image of Gilman Hall.
 %    \begin{macrocode}
-    \node at (current page.center) {
-      \includegraphics[
-          height=\paperheight,
-          keepaspectratio,
-          width=\paperwidth,
-      ]{GilmanHall}
-    };
+      \node at (current page.center) {
+        \includegraphics[
+            height=\paperheight,
+            keepaspectratio,
+            width=\paperwidth,
+        ]{GilmanHall}
+      };
 %    \end{macrocode}
 % Use a blue background for the entire slide.
 %    \begin{macrocode}
-    \fill[
-        Pantone 288 C,
-        opacity=0.85,
-    ] (current page.north west) rectangle (current page.south east);
+      \fill[
+          Pantone 288 C,
+          opacity=0.85,
+      ] (current page.north west) rectangle (current page.south east);
 %    \end{macrocode}
 % Insert the Whiting School of Engineering logo.
 %    \begin{macrocode}
-    \node[
-        anchor=north east
-    ] at (current page.north east) {
-      \includegraphics[
-          width=0.33\paperwidth,
-      ]{{whiting.logo.small.horizontal.white}.eps}
-    };
+      \node[
+          anchor=north east
+      ] at (current page.north east) {
+        \includegraphics[
+            width=0.33\paperwidth,
+        ]{{whiting.logo.small.horizontal.white}.eps}
+      };
 %    \end{macrocode}
 %    \begin{macrocode}
-  \end{tikzpicture}%
+    \end{tikzpicture}%
+%    \end{macrocode}
+%    \begin{macrocode}
+  \fi% END beamer@notesnormals
 %    \end{macrocode}
 % Insert vertical space so that the title appears (loosely) in the middle of the frame.
 %    \begin{macrocode}
