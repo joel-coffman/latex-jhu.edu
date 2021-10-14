@@ -330,6 +330,13 @@
 % }
 %    \begin{macrocode}
 \defbeamertemplate*{end page}{ep.jhu.edu}[1][]{%
+%    \end{macrocode}
+% Suppress the headline, footline, and sidebars on the current frame by manually setting the corresponding key.
+% This approach may not be generalizable (e.g., if the theme has a headline, then setting this key inside this template is likely too late to have the desired effect), but works well for the \textsf{default} outer theme that does not define a headline, footline, or left sidebar.
+%    \begin{macrocode}
+  \global\beamer@plainframetrue%
+%    \end{macrocode}
+%    \begin{macrocode}
   \begin{tikzpicture}[
       overlay,
       remember picture,
