@@ -258,7 +258,14 @@
 \definecolor{Pantone 7683 C}{HTML}{426DA9}
 %    \end{macrocode}
 %
-% Define \textsc{beamer} colors:
+% Define \textsc{beamer} colors.
+%
+% The \textsf{structure} color (and font) is used as the basis for many other colors, including the frame title and the headings of blocks.
+%    \begin{macrocode}
+\setbeamercolor{structure}{
+  fg=Pantone 288 C,
+}
+%    \end{macrocode}
 % ^^A TODO: Inherit from structure (or another color palette)
 %    \begin{macrocode}
 \setbeamercolor{author}{
@@ -295,9 +302,6 @@
 }
 \setbeamerfont{title}{
   size=\huge,
-}
-\setbeamercolor{structure}{
-  fg=Pantone 288 C,
 }
 \setbeamerfont{subtitle}{
   series=\mdseries,
