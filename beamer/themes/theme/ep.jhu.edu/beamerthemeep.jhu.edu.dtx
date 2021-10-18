@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{beamerthemeep.jhu.edu}
-%<package>  [2021/10/15 v0.2.2 Beamer theme for Engineering for Professionals]
+%<package>  [2021/10/18 v0.2.2 Beamer theme for Engineering for Professionals]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -325,6 +325,9 @@
 % \subsection{Fonts}
 % Define \textsc{beamer} fonts:
 %    \begin{macrocode}
+\setbeamerfont{block title}{
+  size=\large,
+}
 \setbeamerfont{copyright}{
   size=\scriptsize,
 }
