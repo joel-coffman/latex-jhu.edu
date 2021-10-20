@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{beamerthemeep.jhu.edu}
-%<package>  [2021/10/18 v0.2.2 Beamer theme for Engineering for Professionals]
+%<package>  [2021/10/20 v0.2.2 Beamer theme for Engineering for Professionals]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -306,6 +306,11 @@
   }
   \setbeamercolor{title}{
     fg=white,
+  }
+\else
+  \setbeamercolor{copyright}{
+    use=structure,
+    fg=structure.fg,
   }
 \fi% END beamer@notesnormals
 %    \end{macrocode}
