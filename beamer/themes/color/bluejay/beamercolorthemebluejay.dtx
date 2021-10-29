@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{beamercolorthemebluejay}
-%<package>  [2016/12/31 v0.0.1 Beamer color theme for Johns Hopkins University]
+%<package>  [2021/10/29 v0.0.2 Beamer color theme for Johns Hopkins University]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -162,12 +162,15 @@
 \definecolor{PMS Gray 1}{RGB}{229,226,224}
 \definecolor{PMS Gray 4}{RGB}{74,72,76}
 \definecolor{PMS Gray 5}{RGB}{44,44,51}
-\definecolor{PMS 173C}{RGB}{207,69,32}
-\definecolor{PMS 179C}{RGB}{224,60,49}
-\definecolor{PMS 284C}{RGB}{114,172,229}
-\definecolor{PMS 300C}{RGB}{0,94,184}
-\definecolor{PMS 341C}{RGB}{0,122,82}
+\definecolor{PMS 173 C}{RGB}{207,69,32}
+\definecolor{PMS 179 C}{RGB}{224,60,49}
+\definecolor{PMS 284 C}{RGB}{114,172,229}
+\definecolor{PMS 300 C}{RGB}{0,94,184}
+\definecolor{PMS 341 C}{RGB}{0,122,82}
 %    \end{macrocode}
+% \changes{0.0.2}{2021/10/29}{%
+%   Correct names of Pantone colors
+% }
 %
 % Table~\ref{table:colors} lists the color names and samples of those colors defined by this theme.
 %
@@ -184,11 +187,11 @@
 %     PMS Gray 1 & \testcolor{PMS Gray 1}\\
 %     PMS Gray 4 & \testcolor{PMS Gray 4}\\
 %     PMS Gray 5 & \testcolor{PMS Gray 5}\\
-%     PMS 173C & \testcolor{PMS 173C}\\
-%     PMS 179C & \testcolor{PMS 179C}\\
-%     PMS 284C & \testcolor{PMS 284C}\\
-%     PMS 300C & \testcolor{PMS 300C}\\
-%     PMS 341C & \testcolor{PMS 341C}\\
+%     PMS 173 C & \testcolor{PMS 173 C}\\
+%     PMS 179 C & \testcolor{PMS 179 C}\\
+%     PMS 284 C & \testcolor{PMS 284 C}\\
+%     PMS 300 C & \testcolor{PMS 300 C}\\
+%     PMS 341 C & \testcolor{PMS 341 C}\\
 %     \bottomrule
 %   \end{tabular}
 % \end{table}
@@ -212,25 +215,25 @@
 }
 %    \end{macrocode}
 %
-% \mintinline{latex}{alerted text} is a dusky red. \testcolor{PMS 173C}
+% \mintinline{latex}{alerted text} is a dusky red. \testcolor{PMS 173 C}
 %    \begin{macrocode}
 \setbeamercolor{alerted text}{
-  fg=PMS 173C,
+  fg=PMS 173 C,
 }
 %    \end{macrocode}
 %
-% \mintinline{latex}{example text} is a dark green. \testcolor{PMS 341C}
+% \mintinline{latex}{example text} is a dark green. \testcolor{PMS 341 C}
 %    \begin{macrocode}
 \setbeamercolor{example text}{
-  fg=PMS 341C,
+  fg=PMS 341 C,
 }
 %    \end{macrocode}
 %
-% The \mintinline{latex}{structure} color palette is derived from a medium blue. \testcolor{PMS 300C}
+% The \mintinline{latex}{structure} color palette is derived from a medium blue. \testcolor{PMS 300 C}
 % Shades of this color are used for most elements in the presentation.
 %    \begin{macrocode}
 \setbeamercolor{structure}{
-  fg=PMS 300C,
+  fg=PMS 300 C,
 }
 %    \end{macrocode}
 % \iffalse
