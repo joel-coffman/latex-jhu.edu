@@ -18,13 +18,14 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{beamercolorthemebluejay}
-%<package>  [2021/10/29 v0.0.2 Beamer color theme for Johns Hopkins University]
+%<package>  [2021/10/29 v0.1.0 Beamer color theme for Johns Hopkins University]
 %
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{beamerarticle}
 
 \usepackage{booktabs}
+\usepackage{caption}
 \usepackage{graphicx}
 \usepackage{minted}
 \usepackage{url}
@@ -157,41 +158,136 @@
 %
 % \subsection{Colors}
 % Define colors from the Johns Hopkins color palette.
-% See \url{http://brand.jhu.edu/color/} for additional colors and usage guidelines.
-%    \begin{macrocode}
-\definecolor{PMS Gray 1}{RGB}{229,226,224}
-\definecolor{PMS Gray 4}{RGB}{74,72,76}
-\definecolor{PMS Gray 5}{RGB}{44,44,51}
-\definecolor{PMS 173 C}{RGB}{207,69,32}
-\definecolor{PMS 179 C}{RGB}{224,60,49}
-\definecolor{PMS 284 C}{RGB}{114,172,229}
-\definecolor{PMS 300 C}{RGB}{0,94,184}
-\definecolor{PMS 341 C}{RGB}{0,122,82}
-%    \end{macrocode}
+% See \url{http://brand.jhu.edu/color/} for use guidelines.
+%
 % \changes{0.0.2}{2021/10/29}{%
 %   Correct names of Pantone colors
 % }
+% \changes{0.1.0}{2021/10/29}{%
+%   Update colors to match brand guidelines
+% }
 %
-% Table~\ref{table:colors} lists the color names and samples of those colors defined by this theme.
-%
+% \subsubsection{Primary Palette}
+% Define the colors in the primary palette.
+%    \begin{macrocode}
+\definecolor{PMS 284 C}{RGB}{114,172,229}
+\definecolor{PMS 288 C}{RGB}{0,45,114}
+%    \end{macrocode}
+% Provide memorable monikers for the primary colors.
+%    \begin{macrocode}
+\colorlet{Heritage Blue}{PMS 288 C}
+\colorlet{Spirit Blue}{PMS 284 C}
+%    \end{macrocode}
+% Table~\ref{table:primary colors} lists the primary colors and provides samples of those colors.
 % \begin{table}[tbh]
 %   \centering
 %   \caption{%
-%     Color names and samples of colors defined by this theme.
+%     Primary colors
 %   }
-%   \label{table:colors}
+%   \label{table:primary colors}
+%   \begin{tabular}{lll}
+%     \toprule
+%     Color & Sample & Name\\
+%     \midrule
+%     PMS 288 C & \testcolor{Heritage Blue} & Heritage Blue\\
+%     PMS 284 C & \testcolor{Spirit Blue} & Spirit Blue\\
+%     \bottomrule
+%   \end{tabular}
+% \end{table}
+%
+% \subsubsection{Secondary Palette}
+% Define the colors in the secondary palette.
+%    \begin{macrocode}
+\definecolor{PMS 173 C}{RGB}{207,69,32}
+\definecolor{PMS 188 C}{RGB}{118,35,47}
+\definecolor{PMS 7655 C}{RGB}{161,90,149}
+\definecolor{PMS 3278 C}{RGB}{0,155,119}
+\definecolor{PMS 285 C}{RGB}{0,114,206}
+\definecolor{PMS 7406 C}{RGB}{241,196,0}
+%    \end{macrocode}
+% Table~\ref{table:secondary colors} lists the secondary colors and provides samples of those colors.
+% \begin{table}[tbh]
+%   \centering
+%   \caption{%
+%     Secondary colors
+%   }
+%   \label{table:secondary colors}
 %   \begin{tabular}{ll}
 %     \toprule
 %     Color & Sample\\
 %     \midrule
-%     PMS Gray 1 & \testcolor{PMS Gray 1}\\
-%     PMS Gray 4 & \testcolor{PMS Gray 4}\\
-%     PMS Gray 5 & \testcolor{PMS Gray 5}\\
 %     PMS 173 C & \testcolor{PMS 173 C}\\
-%     PMS 179 C & \testcolor{PMS 179 C}\\
-%     PMS 284 C & \testcolor{PMS 284 C}\\
-%     PMS 300 C & \testcolor{PMS 300 C}\\
-%     PMS 341 C & \testcolor{PMS 341 C}\\
+%     PMS 188 C & \testcolor{PMS 188 C}\\
+%     PMS 7655 C & \testcolor{PMS 7655 C}\\
+%     PMS 3278 C & \testcolor{PMS 3278 C}\\
+%     PMS 285 C & \testcolor{PMS 285 C}\\
+%     PMS 7406 C & \testcolor{PMS 7406 C}\\
+%     \bottomrule
+%   \end{tabular}
+% \end{table}
+%
+% \subsubsection{Accent Palette}
+% Define the colors in the accent palette.
+%    \begin{macrocode}
+\definecolor{PMS 7407 C}{RGB}{203,160,82}
+\definecolor{PMS 1375 C}{RGB}{255,158,27}
+\definecolor{PMS 1505 C}{RGB}{255,105,0}
+\definecolor{PMS 7586 C}{RGB}{158,83,48}
+\definecolor{PMS 4625 C}{RGB}{79,44,29}
+\definecolor{PMS 486 C}{RGB}{232,146,124}
+\definecolor{PMS 187 C}{RGB}{166,25,26}
+\definecolor{PMS 262 C}{RGB}{81,40,79}
+\definecolor{PMS 666 C}{RGB}{161,146,178}
+\definecolor{PMS 279 C}{RGB}{65,143,222}
+\definecolor{PMS 564 C}{RGB}{134,200,188}
+\definecolor{PMS 7734 C}{RGB}{40,97,64}
+\definecolor{PMS 7490 C}{RGB}{113,153,73}
+%    \end{macrocode}
+% Table~\ref{table:accent colors} lists the accent colors and provides samples of those colors.
+% \begin{table}[tbh]
+%   \centering
+%   \caption{%
+%     Accent colors
+%   }
+%   \label{table:accent colors}
+%   \begin{tabular}{ll}
+%     \toprule
+%     Color & Sample\\
+%     \midrule
+%     PMS 7407 C & \testcolor{PMS 7407 C}\\
+%     PMS 1375 C & \testcolor{PMS 1375 C}\\
+%     PMS 1505 C & \testcolor{PMS 1505 C}\\
+%     PMS 7586 C & \testcolor{PMS 7586 C}\\
+%     PMS 4625 C & \testcolor{PMS 4625 C}\\
+%     PMS 486 C & \testcolor{PMS 486 C}\\
+%     PMS 187 C & \testcolor{PMS 187 C}\\
+%     PMS 262 C & \testcolor{PMS 262 C}\\
+%     PMS 666 C & \testcolor{PMS 666 C}\\
+%     PMS 279 C & \testcolor{PMS 279 C}\\
+%     PMS 564 C & \testcolor{PMS 564 C}\\
+%     PMS 7734 C & \testcolor{PMS 7734 C}\\
+%     PMS 7490 C & \testcolor{PMS 7490 C}\\
+%     \bottomrule
+%   \end{tabular}
+% \end{table}
+%
+% \subsubsection{Grayscale}
+% Define the colors in the grayscale palette.
+%    \begin{macrocode}
+\definecolor{PMS Black 4 C}{RGB}{49,38,29}
+%    \end{macrocode}
+% Table~\ref{table:grayscale} lists the grayscale colors and provides samples of those colors.
+% \begin{table}[tbh]
+%   \centering
+%   \caption{%
+%     Grayscale colors
+%   }
+%   \label{table:grayscale}
+%   \begin{tabular}{ll}
+%     \toprule
+%     Color & Sample\\
+%     \midrule
+%     PMS Black 4 C & \testcolor{PMS Black 4 C}\\
 %     \bottomrule
 %   \end{tabular}
 % \end{table}
@@ -203,37 +299,37 @@
 %    \begin{macrocode}
 \setbeamercolor{normal text}{
 %    \end{macrocode}
-% Use light gray background \testcolor{PMS Gray 1!50} if the \mintinline{latex}{gray} option is specified.
+% Use light gray background \testcolor{PMS Black 4 C!5} if the \mintinline{latex}{gray} option is specified.
 %    \begin{macrocode}
-  bg=\if@beamercolorthemebluejay@gray PMS Gray 1!50\else white\fi,
+  bg=\if@beamercolorthemebluejay@gray PMS Black 4 C!5\else white\fi,
 %    \end{macrocode}
-% Use dark gray foreground. \testcolor{PMS Gray 5}
+% Use dark gray foreground. \testcolor{PMS Black 4 C}
 % \mintinline{latex}{black} could be used instead, but
-% \mintinline{latex}{PMS Gray 5} appears in the university's color palette.
+% \mintinline{latex}{PMS Black 4 C} appears in the university's color palette.
 %    \begin{macrocode}
-  fg=PMS Gray 5,
+  fg=PMS Black 4 C,
 }
 %    \end{macrocode}
 %
-% \mintinline{latex}{alerted text} is a dusky red. \testcolor{PMS 173 C}
+% \mintinline{latex}{alerted text} is red. \testcolor{PMS 173 C}
 %    \begin{macrocode}
 \setbeamercolor{alerted text}{
   fg=PMS 173 C,
 }
 %    \end{macrocode}
 %
-% \mintinline{latex}{example text} is a dark green. \testcolor{PMS 341 C}
+% \mintinline{latex}{example text} is green. \testcolor{PMS 3278 C}
 %    \begin{macrocode}
 \setbeamercolor{example text}{
-  fg=PMS 341 C,
+  fg=PMS 3278 C,
 }
 %    \end{macrocode}
 %
-% The \mintinline{latex}{structure} color palette is derived from a medium blue. \testcolor{PMS 300 C}
+% The \mintinline{latex}{structure} color palette is derived from Heritage Blue. \testcolor{Heritage Blue}
 % Shades of this color are used for most elements in the presentation.
 %    \begin{macrocode}
 \setbeamercolor{structure}{
-  fg=PMS 300 C,
+  fg=Heritage Blue,
 }
 %    \end{macrocode}
 % \iffalse
