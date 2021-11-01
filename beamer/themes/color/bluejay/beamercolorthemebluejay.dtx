@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{beamercolorthemebluejay}
-%<package>  [2021/10/29 v0.1.0 Beamer color theme for Johns Hopkins University]
+%<package>  [2021/10/30 v0.1.0 Beamer color theme for Johns Hopkins University]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -98,11 +98,14 @@
 %
 % \section{Usage}
 % Per Beamer's documentation, this color theme should be loaded via the following command:
-% \begin{minted}[
-%   gobble=2,
-% ]{latex}
-  \usecolortheme{bluejay}
-% \end{minted}
+% \begin{VerbatimOut}[
+%     gobble=2,
+% ]{minted/usecolortheme.out}
+% \usecolortheme{bluejay}
+% \end{VerbatimOut}
+% \inputminted[
+%     autogobble,
+% ]{latex}{minted/usecolortheme.out}
 %
 % The following images illustrate the theme's style.
 %
