@@ -25,6 +25,9 @@ jobs:
               ca-certificates \
               git
       - uses: actions/checkout@v2
+      - name: configure Git
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: install dependencies
         run: |
           apt update && apt install --no-install-recommends --yes \
