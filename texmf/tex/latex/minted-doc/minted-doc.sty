@@ -1,10 +1,10 @@
 %%
-%% This is file `theme-doc.sty',
+%% This is file `minted-doc.sty',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% theme-doc.dtx  (with options: `package')
+%% minted-doc.dtx  (with options: `package')
 %%
 %% This is a generated file.
 %%
@@ -21,22 +21,26 @@
 %% LaTeX version 1999/12/01 or later.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{theme-doc}[%
-    2017/05/26 %
-    v0.0.4 %
-    Package to typeset documentation for Beamer themes%
+\ProvidesPackage{minted-doc}[%
+    2022/06/29 %
+    v0.1.2 %
+    Patches when using minted with docstrip%
 ]
-\RequirePackage{minted-doc}
-\newcommand{\beamer}{%
-  \textsc{beamer}%
-}
-\providecommand{\testcolor}[1]{%
-  \fboxsep0pt%
-  \fbox{%
-    \colorbox{#1}%
-    {\phantom{XX}}%
-  }%
+\RequirePackage{xpatch}
+\@ifpackageloaded{minted}{%
+  \xapptocmd{\inputminted}{%
+    \noindent%
+    \ignorespaces%
+  }{}{}%
+}{}
+\@ifpackagelater{minted}{2017/07/19}{}{%
+  \AtBeginDocument{%
+    \xpretocmd{\inputminted}{%
+      \write\@auxout{\noexpand\minted@checkstyle{#2}}%
+    }{}{}%
+    \minted@checkstyle{default}%
+  }
 }
 \endinput
 %%
-%% End of file `theme-doc.sty'.
+%% End of file `minted-doc.sty'.
