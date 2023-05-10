@@ -42,7 +42,10 @@ done
 endef
 
 external := $(basename $(shell find . -name "*.url"))
+ifneq ($(external),)  # .SECONDARY should have prerequisite(s)
+# do not automatically delete external files
 .SECONDARY: $(external)
+endif
 
 DEPENDENCIES = $(wildcard *.bib) $(external) \
                $(wildcard $(CWD)/glossary.tex) \
@@ -124,6 +127,7 @@ _dist_derivatives += $(archive)
 
 .PHONY: distclean
 distclean:
+	$(RM) $(patsubst %.url,%,$(shell find . -name "*.url"))
 	$(RM) $(_dist_derivatives)
 
 
