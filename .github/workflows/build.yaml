@@ -12,7 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - debian:buster  # TeX Live 2018
           - debian:bullseye  # TeX Live 2020
     steps:
       - name: Install lsb_release
@@ -37,7 +36,8 @@ jobs:
       - name: make
         run: make
       - name: Archive artifacts
-        uses: actions/upload-artifact@v2
+        if: ${{ matrix.os == 'debian:bullseye' }}
+        uses: actions/upload-artifact@v4
         with:
           name: packages
           path: |

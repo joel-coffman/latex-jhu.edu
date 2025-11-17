@@ -11,6 +11,7 @@
 *.blg
 *.glo
 *.gls
+*.hd
 *.idx
 *.ilg
 *.ind
@@ -22,7 +23,8 @@
 *.toc
 
 *.synctex.gz
-_minted-*
+_minted/
+_minted-*/
 
 .version.tex
 

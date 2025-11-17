@@ -72,7 +72,7 @@ vpath %.dtx $(CWD):$(addprefix $(CWD)/,$(packages))
 vpath %.sty $(CWD):$(addprefix $(CWD)/,$(packages))
 
 
-derivatives += *.acn *.acr *.alg *.aux *.bbl *.blg *.dvi *.glb *.glx *.glg *.glo *.gls *.idx *.ind *.ilg *.ist *.log *.lof *.lot *.nav *.out *.pyg *.snm *.toc *.vrb
+derivatives += *.acn *.acr *.alg *.aux *.bbl *.blg *.dvi *.glb *.glx *.glg *.glo *.gls *.hd *.idx *.ind *.ilg *.ist *.log *.lof *.lot *.nav *.out *.pyg *.snm *.toc *.vrb
 
 .PHONY: clean
 clean:
