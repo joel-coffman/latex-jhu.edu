@@ -341,6 +341,10 @@
 \setbeamerfont{frametitle}{
   size=\LARGE,
 }
+\setbeamerfont{framesubtitle}{
+  series=\mdseries,
+  size=\large,
+}
 \setbeamerfont{title}{
   size=\huge,
 }
@@ -417,8 +421,17 @@
 %    \begin{macrocode}
 \defbeamertemplate*{frametitle}{ep.jhu.edu}{%
   \vskip2ex%
-  \insertframetitle%
-  \par%
+  \strut\insertframetitle\strut\par%
+  {% copied from beamerouterthemedefault.sty
+    \ifx\insertframesubtitle\@empty%
+    \else%
+    {%
+      \usebeamerfont{framesubtitle}%
+      \usebeamercolor[fg]{framesubtitle}%
+      \strut\insertframesubtitle\strut\par%
+    }%
+    \fi
+  }%
   {\color{Spirit Blue}\rule{2em}{0.5ex}}%
 }
 %    \end{macrocode}
