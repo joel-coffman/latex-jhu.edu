@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{beamerthemeep.jhu.edu}
-%<package>  [2021/10/29 v0.2.3 Beamer theme for Engineering for Professionals]
+%<package>  [2025/11/30 v0.2.4 Beamer theme for Engineering for Professionals]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -488,7 +488,7 @@
 %    \end{macrocode}
 %
 % \subsubsection{Title Page}
-% The title page template features Gilman Hall in the background with the Whiting School of Engineering logo prominently displayed in the top left corner.
+% The title page template features Maryland Hall in the background with the Whiting School of Engineering logo prominently displayed in the top left corner.
 %    \begin{macrocode}
 \defbeamertemplate*{title page}{ep.jhu.edu}[1][]{%
 %    \end{macrocode}
@@ -509,16 +509,19 @@
         remember picture,
     ]
 %    \end{macrocode}
-% Insert the image of Gilman Hall.
+% Insert the image of Maryland Hall.
 %    \begin{macrocode}
       \node at (current page.center) {
         \includegraphics[
             height=\paperheight,
             keepaspectratio,
             width=\paperwidth,
-        ]{GilmanHall}
+        ]{MarylandHall}
       };
 %    \end{macrocode}
+% \changes{0.2.4}{2025/11/29}{%
+%   Use image of Maryland Hall on title page
+% }
 % Use a blue background for the entire slide.
 %    \begin{macrocode}
       \fill[
