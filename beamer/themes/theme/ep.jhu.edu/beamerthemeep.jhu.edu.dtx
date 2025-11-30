@@ -471,16 +471,19 @@
     }%
     \vskip0pt%
   \fi%
+  \hfill{%
+    \raisebox{1pt}[0pt][0pt]{%
+      \smash{%
+        \usebeamertemplate***{navigation symbols}%
+      }%
+    }%
+  }\null\hskip0.1cm\null%
 }
 %    \end{macrocode}
 %
-% \subsubsection{Sidebar Right}
 % Omit the logo (as compared to the \textsf{default} outer theme).\footnote{\url{https://github.com/josephwright/beamer/blob/d6af506/base/themes/outer/beamerouterthemedefault.sty\#L121}}.
 %    \begin{macrocode}
 \defbeamertemplate*{sidebar right}{ep.jhu.edu}{%
-  \vfill%
-  \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
-  \vskip2pt%
 }
 %    \end{macrocode}
 %
